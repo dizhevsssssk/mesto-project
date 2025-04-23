@@ -5,24 +5,26 @@
   "main": "src/scripts/index.js",
   "scripts": {
     "dev": "webpack serve --mode development",
-    "build": "webpack --mode production"
+    "build": "webpack --mode production",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
-  "dependencies": {},
   "devDependencies": {
     "@babel/core": "^7.21.0",
     "@babel/preset-env": "^7.21.0",
-    "babel-loader": "^9.1.0",
-    "webpack": "^5.88.0",
-    "webpack-cli": "^5.1.4",
-    "webpack-dev-server": "^4.15.0",
-    "html-webpack-plugin": "^5.5.0",
-    "mini-css-extract-plugin": "^2.7.0",
-    "css-loader": "^6.8.0",
-    "style-loader": "^3.3.0",
-    "postcss-loader": "^7.2.0",
     "autoprefixer": "^10.4.14",
+    "babel-loader": "^9.1.0",
+    "css-loader": "^6.8.0",
     "cssnano": "^6.0.1",
     "file-loader": "^6.2.0",
-    "image-webpack-loader": "^8.1.0"
+    "gh-pages": "^6.3.0",
+    "html-webpack-plugin": "^5.5.0",
+    "image-webpack-loader": "^8.1.0",
+    "mini-css-extract-plugin": "^2.7.0",
+    "postcss-loader": "^7.2.0",
+    "style-loader": "^3.3.0",
+    "webpack": "^5.88.0",
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^4.15.0"
   }
 }

@@ -20,3 +20,38 @@
     margin-right: 0;
   }
 }
+
+.profile__image-container {
+  position: relative;
+  display: inline-block;
+}
+
+/* Кнопка перекрывает изображение полностью */
+.profile__avatar-edit-button {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 120px;
+  height: 120px;
+  border: none;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0); /* прозрачная */
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.profile__avatar-edit-icon {
+  width: 26px;
+  height: 26px;
+  pointer-events: none;
+}
+
+.profile__image-container:hover .profile__avatar-edit-button {
+  background-color: rgba(0, 0, 0, 0.6); /* тёмный фон при ховере */
+  opacity: 1;
+}
