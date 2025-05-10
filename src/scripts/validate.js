@@ -1,4 +1,8 @@
-// validate.js
+let isSubmitting = false;
+
+export function setSubmittingState(state) {
+  isSubmitting = state;
+}
 
 export function resetFormErrors(formElement, settings) {
   const inputList = Array.from(formElement.querySelectorAll(settings.inputSelector));
@@ -35,7 +39,7 @@ function isValid(formElement, inputElement, settings) {
 export function toggleButtonState(inputList, buttonElement, settings) {
   const hasInvalidInput = inputList.some((inputElement) => !inputElement.validity.valid);
 
-  if (hasInvalidInput) {
+  if (hasInvalidInput || isSubmitting) {
     buttonElement.classList.add(settings.inactiveButtonClass);
     buttonElement.setAttribute('disabled', true);
   } else {

@@ -1,5 +1,5 @@
 import { createCard } from './card.js';
-import { toggleButtonState, enableValidation, resetFormErrors } from './validate.js';
+import { toggleButtonState, enableValidation, resetFormErrors, setSubmittingState } from './validate.js';
 import { openModal, closeModal } from './modal.js';
 import { getUserInfo, getCards, updateUserInfo, addNewCard, deleteCard, updateAvatar } from './api.js';
 
@@ -67,19 +67,22 @@ function setButtonLoadingState(button, isLoading) {
 }
 
 function submitFormWithRetry(submitButton, form, action) {
-  setButtonLoadingState(submitButton, true); // Меняем текст кнопки на "Сохранение..."
+  setSubmittingState(true);
+  setButtonLoadingState(submitButton, true);
 
   action()
     .then(() => {
-      closeModal(form); // Закрываем форму, если запрос прошел успешно
+      closeModal(form);
     })
     .catch((err) => {
       console.error('Ошибка:', err);
-      // Можно добавить отображение сообщения об ошибке на странице, если необходимо
-      // Например, создать элемент для ошибки и показать его в форме
     })
     .finally(() => {
-      setButtonLoadingState(submitButton, false); // Восстанавливаем текст кнопки в исходное состояние
+      setButtonLoadingState(submitButton, false);
+      setSubmittingState(false);
+
+      const inputList = Array.from(form.querySelectorAll(validationSettings.inputSelector));
+      toggleButtonState(inputList, submitButton, validationSettings);
     });
 }
 
